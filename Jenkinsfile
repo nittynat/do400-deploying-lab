@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        node {
-            label 'maven'
-      }
+        node { label: 'maven' }
     }
+
     environment { QUAY = credentials('QUAY_USER') }
+
     stages {
         stage('Test') {
             steps {
@@ -34,6 +34,15 @@ pipeline {
                     oc rollout latest deploymentconfig/home-automation \
                     -n rht-nlind-deploying-lab-test
                 '''
+            }
+        }
+        stage('Deploy to Prod') {
+            when { branch "main"}
+
+            steps {
+                sh '''
+                    oc rollout latest deploymentconfig/home-automation \
+                    -n rht-nlind-deploying-lab-prod
             }
         }
     }
