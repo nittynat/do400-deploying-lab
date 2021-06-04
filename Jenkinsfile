@@ -43,6 +43,7 @@ pipeline {
                 sh '''
                     oc rollout latest deploymentconfig/home-automation \
                     -n rht-nlind-deploying-lab-prod
+                '''
             }
         }
     }
