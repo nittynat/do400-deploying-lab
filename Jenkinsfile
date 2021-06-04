@@ -28,5 +28,13 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy to Test') {
+            steps {
+                sh '''
+                    oc rollout latest deploymentconfig/home-automation \
+                    -n rht-nlind-deploying-lab-test
+                '''
+            }
+        }
     }
 }
