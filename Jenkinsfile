@@ -3,8 +3,8 @@ pipeline {
         node {
             label 'maven'
       }
-    environment { QUAY = credentials('QUAY_USER') }
     }
+    environment { QUAY = credentials('QUAY_USER') }
     stages {
         stage('Test') {
             steps {
